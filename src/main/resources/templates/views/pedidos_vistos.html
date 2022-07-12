@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -46,7 +46,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link" th:href="@{/}">
         <i class="fas fa-warehouse"></i>
         <span>Inventario</span></a>
     </li>
@@ -61,14 +61,14 @@
 
     <!-- Nav Item - Request -->
     <li class="nav-item ">
-      <a class="nav-link" href="pedidos_nuevos.html">
+      <a class="nav-link" th:href="@{/pedidos_nuevos}">
         <i class="fas fa-clipboard-list"></i>
         <span>Nuevos</span></a>
     </li>
 
     <!-- Nav Item - Request -->
     <li class="nav-item active">
-      <a class="nav-link" href="pedidos_vistos.html">
+      <a class="nav-link" th:href="@{/pedidos_vistos}">
         <i class="fas fa-clipboard-check"></i>
         <span>Vistos</span></a>
     </li>

@@ -6,18 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
-
 @Controller
-public class ControladorInventario {
+public class ControladorMaterial {
     @Autowired
     ServicioMaterial servicioMaterial;
 
-    @GetMapping(value = "/")
-    public String inicio(Model model) {
+    @GetMapping(value = "/agregar_material")
+    public String agregarMaterial(Model model) {
         try {
-            model.addAttribute("materiales", servicioMaterial.findAll());
-            return "views/index";
+            return "/views/crear_material.html";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
             return "error";

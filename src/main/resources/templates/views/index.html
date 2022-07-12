@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -58,14 +59,14 @@
         </div>
 
         <li class="nav-item ">
-            <a class="nav-link" href="pedidos_nuevos.html">
+            <a class="nav-link" th:href="@{/pedidos_nuevos}">
                 <i class="fas fa-clipboard-list"></i>
                 <span>Nuevos</span></a>
         </li>
 
         <!-- Nav Item - Request -->
         <li class="nav-item">
-            <a class="nav-link" href="pedidos_vistos.html">
+            <a class="nav-link" th:href="@{/pedidos_vistos}">
                 <i class="fas fa-clipboard-check"></i>
                 <span>Vistos</span></a>
         </li>
@@ -162,7 +163,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                            <a href="pedidos_nuevos.html">
+                                            <a th:href="@{/pedidos_nuevos}">
                                                 Pedidos Nuevos</a>
                                         </div>
                                         <div class="row no-gutters align-items-center">
@@ -186,7 +187,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                            <a class="text-warning" href="pedidos_vistos.html">
+                                            <a class="text-warning" th:href="@{/pedidos_vistos}">
                                                 Pedidos Vistos</a>
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
@@ -205,8 +206,8 @@
                 <div class="card shadow mb-4">
                     <div class="card-header py-3 d-sm-flex align-items-center justify-content-between mb-4">
                         <h6 class="m-0 font-weight-bold text-primary">Inventario</h6>
-                        <a href="crear_material.html" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Ingresar nuevos materiales</a>
+                        <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" th:href="@{/agregar_material}"><i
+                                class="fas fa-download fa-sm text-white-50" ></i> Ingresar nuevos materiales</a>
                     </div>
                     <div class="card-body">
                         <table class="table table-striped" id="materiales">
@@ -214,7 +215,6 @@
                             <tr>
                                 <th scope="col">Material</th>
                                 <th scope="col">Cantidad</th>
-
                             </tr>
                             </thead>
                             <tbody>
