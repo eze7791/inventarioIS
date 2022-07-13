@@ -1,5 +1,5 @@
 package com.example.iventariois.models;
-import lombok.Data;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -10,7 +10,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "pedidos")
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Pedido {
 
     @Id

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="es">
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 
 <head>
 
@@ -32,7 +32,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" th:href="@{/}">
             <div class="sidebar-brand-icon ">
 
                 <i class="fas fa-archive"></i>
@@ -45,7 +45,7 @@
 
         <!-- Nav Item - Inventory -->
         <li class="nav-item active">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" th:href="@{/}">
                 <i class="fas fa-warehouse"></i>
                 <span>Inventario</span></a>
         </li>
@@ -206,7 +206,7 @@
                 <div class="card shadow mb-4">
                     <div class="card-header py-3 d-sm-flex align-items-center justify-content-between mb-4">
                         <h6 class="m-0 font-weight-bold text-primary">Inventario</h6>
-                        <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" th:href="@{/agregar_material}"><i
+                        <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" th:href="@{/agregar_material/0}"><i
                                 class="fas fa-download fa-sm text-white-50" ></i> Ingresar nuevos materiales</a>
                     </div>
                     <div class="card-body">
@@ -215,12 +215,17 @@
                             <tr>
                                 <th scope="col">Material</th>
                                 <th scope="col">Cantidad</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
                                 <tr th:each="material : ${materiales}">
                                     <td th:text="${material.nombre}"></td>
                                     <td th:text="${material.cantidad}"></td>
+                                    <td>
+                                        <a th:href="@{/agregar_material/{id}(id=${material.id})}" class="btn btn-warning">Editar</a>
+                                        <a th:href="@{/{id}(id=${material.id})}" class="btn btn-warning">Eliminar</a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -31,7 +31,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" th:href="@{/}">
                 <div class="sidebar-brand-icon ">
 
                     <i class="fas fa-archive"></i>
@@ -44,7 +44,7 @@
 
             <!-- Nav Item - Inventory -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" th:href="@{/}">
                     <i class="fas fa-warehouse"></i>
                     <span>Inventario</span></a>
             </li>
@@ -58,14 +58,14 @@
             </div>
 
             <li class="nav-item ">
-                <a class="nav-link" href="pedidos_nuevos.html">
+                <a class="nav-link" th:href="@{/pedidos_nuevos}">
                     <i class="fas fa-clipboard-list"></i>
                     <span>Nuevos</span></a>
             </li>
 
             <!-- Nav Item - Request -->
             <li class="nav-item">
-                <a class="nav-link" href="pedidos_vistos.html">
+                <a class="nav-link" th:href="@{/pedidos_vistos}">
                     <i class="fas fa-clipboard-check"></i>
                     <span>Vistos</span></a>
             </li>

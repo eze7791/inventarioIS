@@ -1,11 +1,15 @@
 package com.example.iventariois.models;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "fotos")
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+
 public class Foto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
