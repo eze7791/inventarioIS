@@ -25,6 +25,22 @@ public class ServicioPedido {
     }
 
     @Transactional
+    public List<Pedido> findByVisto() throws Exception{
+        try {
+            return (List<Pedido>) repositorioPedido.findByVisto(true);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+    @Transactional
+    public List<Pedido> findByNoVisto() throws Exception{
+        try {
+            return (List<Pedido>) repositorioPedido.findByVisto(false);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+    @Transactional
     public Pedido findById(long id) throws Exception{
         try {
             Optional<Pedido> optionalPedido = repositorioPedido.findById(id);
@@ -48,9 +64,21 @@ public class ServicioPedido {
     public boolean deletePedido(long id) throws Exception{
         try{
             repositorioPedido.deleteById(id);
+
             return true;
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
     }
+
+
+    /*@Transactional
+    public long countByNoVisto() throws Exception{
+        try {
+            return repositorioPedido.countByNoVisto();
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }*/
+
 }

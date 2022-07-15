@@ -158,27 +158,24 @@
                         <table class="table table-striped" >
                             <thead>
                             <tr>
-                                <th scope="col">Material</th>
-                                <th scope="col">Cantidad</th>
-                                <th></th>
+                                <th scope="col">Descripcion</th>
+                                <th scope="col">Fecha</th>
+                                <th>Estado</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <!--<tr th:each="material : ${materiales}">
-                                <td th:text="${material.nombre}"></td>
-                                <td th:text="${material.cantidad}"></td>
-                                <td>
-                                    <a th:href="@{/agregar_material/{id}(id=${material.id})}" class="btn btn-warning">Editar</a>
-                                    <a th:href="@{/{id}(id=${material.id})}" class="btn btn-warning">Eliminar</a>
-                                </td>
-                            </tr>-->
+                            <tr th:each="pedido : ${pedidos}">
+                                <td th:text="${pedido.descripcion}"></td>
+                                <td th:text="${pedido.fecha}"></td>
+                                <td th:text="${pedido.estado}"></td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
 
                     <!-- /.container-fluid -->
-
-        </div>
+                </div>
+            </div>
         <!-- End of Main Content -->
 
         <!-- Footer -->
@@ -194,6 +191,7 @@
     </div>
     <!-- End of Content Wrapper -->
 
+    </div>
 </div>
 <!-- End of Page Wrapper -->
 

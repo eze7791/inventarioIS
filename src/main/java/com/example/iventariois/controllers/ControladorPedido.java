@@ -14,6 +14,7 @@ public class ControladorPedido {
     @GetMapping(value = "/pedidos_nuevos")
     public String pedidosNuevos(Model model) {
         try {
+            model.addAttribute("pedidos", servicioPedido.findByNoVisto());
             return "/views/pedidos_nuevos";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
@@ -24,6 +25,7 @@ public class ControladorPedido {
     @GetMapping(value = "/pedidos_vistos")
     public String pedidosVistos(Model model) {
         try {
+            model.addAttribute("pedidos", servicioPedido.findByVisto());
             return "/views/pedidos_vistos";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());

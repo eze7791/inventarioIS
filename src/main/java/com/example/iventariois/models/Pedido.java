@@ -27,6 +27,7 @@ public class Pedido {
 
     private String descripcion;
     private String estado;
+    private Boolean visto; //Ver como poner por defecto 0
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_usuario", nullable = false)
