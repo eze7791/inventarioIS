@@ -52,4 +52,21 @@ public class ServicioUsuario {
             throw new Exception(e.getMessage());
         }
     }
+
+
+    public Optional<Usuario> getByNombreUsuario (String nombreUsuario) throws Exception{
+        try {
+            return repositorioUsuario.findByNombre(nombreUsuario);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public boolean existsById(long id){
+        return repositorioUsuario.existsById(id);
+    }
+
+    public boolean existsByNombre(String nombre){
+        return repositorioUsuario.existsByNombre(nombre);
+    }
 }
