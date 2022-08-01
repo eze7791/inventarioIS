@@ -71,14 +71,13 @@ public class ServicioPedido {
         }
     }
 
+    @Transactional
+    public Long countVistos() {
+        return repositorioPedido.countByvisto(true);
+    }
 
-    /*@Transactional
-    public long countByNoVisto() throws Exception{
-        try {
-            return repositorioPedido.countByNoVisto();
-        }catch (Exception e){
-            throw new Exception(e.getMessage());
-        }
-    }*/
-
+    @Transactional
+    public Long countNoVistos() {
+        return repositorioPedido.countByvisto(false);
+    }
 }

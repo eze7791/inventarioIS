@@ -32,7 +32,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" th:href="@{/}">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" th:href="@{/home}">
             <div class="sidebar-brand-icon ">
 
                 <i class="fas fa-archive"></i>
@@ -45,7 +45,7 @@
 
         <!-- Nav Item - Inventory -->
         <li class="nav-item active">
-            <a class="nav-link" th:href="@{/}">
+            <a class="nav-link" th:href="@{/home}">
                 <i class="fas fa-warehouse"></i>
                 <span>Inventario</span></a>
         </li>
@@ -130,10 +130,12 @@
                                 Activity Log
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <a class="dropdown-item"  data-toggle="modal" data-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Logout
                             </a>
+
+
                         </div>
                     </li>
 
@@ -163,12 +165,12 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                            <a th:href="@{/pedidos_nuevos}">
+                                            <a th:href="@{/home/pedidos_nuevos}">
                                                 Pedidos Nuevos</a>
                                         </div>
                                         <div class="row no-gutters align-items-center">
                                             <div class="col-auto">
-                                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" th:text="@{pedidos}"></div>
+                                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" th:text="${vistos}"></div>
                                             </div>
 
                                         </div>
@@ -187,10 +189,10 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                            <a class="text-warning" th:href="@{/pedidos_vistos}">
+                                            <a class="text-warning" th:href="@{/home/pedidos_vistos}">
                                                 Pedidos Vistos</a>
                                         </div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" th:text="${noVistos}"></div>
                                     </div>
                                     <div class="col-auto">
                                         <i class="fas fa-clipboard-check  fa-2x text-gray-300"></i>
@@ -277,7 +279,9 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" class="btn btn-primary" value="Cerrar sesión">
+                </form>
             </div>
         </div>
     </div>

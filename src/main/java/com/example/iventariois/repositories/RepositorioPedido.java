@@ -9,4 +9,6 @@ import java.util.List;
 public interface RepositorioPedido extends JpaRepository<Pedido, Long> {
     List<Pedido> findByVisto(Boolean visto);
 
+    long countByvisto(Boolean visto);
+
 }

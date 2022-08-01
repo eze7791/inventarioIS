@@ -17,8 +17,8 @@ public class Usuario {
 
     private String nombre;
     private String password;
-    private String email;
-    private boolean es_agente;
+    private String rol;
+
 
     @OneToMany(mappedBy = "usuario")
     private List<Pedido> pedidos;
