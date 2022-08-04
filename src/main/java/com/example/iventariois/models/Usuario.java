@@ -2,7 +2,9 @@ package com.example.iventariois.models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "usuarios")
@@ -19,6 +21,10 @@ public class Usuario {
     private String password;
     private String rol;
 
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"))
+    private Set<Rol> roles = new HashSet<>();
 
     @OneToMany(mappedBy = "usuario")
     private List<Pedido> pedidos;
