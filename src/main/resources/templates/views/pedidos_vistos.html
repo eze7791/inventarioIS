@@ -161,6 +161,7 @@
                 <th scope="col">Descripcion</th>
                 <th scope="col">Fecha</th>
                 <th>Estado</th>
+                <th></th>
               </tr>
               </thead>
               <tbody>
@@ -169,6 +170,8 @@
                   <td th:text="${pedido.fecha}"></td>
                   <td th:text="${pedido.estado}"></td>
                   <td>
+                    <a  href="" class="btn btn-warning">Editar</a>
+                    <a  href="" class="btn btn-warning">Eliminar</a>
                      <!-- <a th:href="@{/agregar_material/{id}(id=${material.id})}" class="btn btn-warning">Editar</a>-->
                      <!-- <a th:href="@{/{id}(id=${material.id})}" class="btn btn-warning">Eliminar</a>-->
                   </td>
@@ -201,7 +204,7 @@
 
 </div>
 <!-- End of Page Wrapper -->
-
+</div>
 <!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded" href="#page-top">
   <i class="fas fa-angle-up"></i>

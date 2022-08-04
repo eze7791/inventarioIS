@@ -12,16 +12,16 @@
     <title>SB Admin 2 - Tables</title>
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -60,14 +60,14 @@
         </div>
 
         <!-- Nav Item - Request -->
-        <li class="nav-item active ">
+        <li class="nav-item ">
             <a class="nav-link" th:href="@{/pedidos_nuevos}">
                 <i class="fas fa-clipboard-list"></i>
                 <span>Nuevos</span></a>
         </li>
 
         <!-- Nav Item - Request -->
-        <li class="nav-item ">
+        <li class="nav-item active">
             <a class="nav-link" th:href="@{/pedidos_vistos}">
                 <i class="fas fa-clipboard-check"></i>
                 <span>Vistos</span></a>
@@ -113,7 +113,7 @@
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                             <img class="img-profile rounded-circle"
-                                 src="img/undraw_profile.svg">
+                                 src="/img/undraw_profile.svg">
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -148,42 +148,87 @@
 
 
                 <!-- DataTales Example -->
-                <div class="card shadow mb-4">
+
+
+                <div class="card shadow mb-4 ">
                     <div class="card-header py-3 d-sm-flex align-items-center justify-content-between mb-4">
-                        <h6 class="m-0 font-weight-bold text-primary">Pedidos Vistos</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Pedido</h6>
                         <!--   <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" th:href="@{/agregar_material/0}"><i
                                    class="fas fa-download fa-sm text-white-50" ></i> Ingresar nuevos materiales</a>-->
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped" >
-                            <thead>
-                            <tr>
-                                <th scope="col">Descripcion</th>
-                                <th scope="col">Fecha</th>
-                                <th>Estado</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="pedido : ${pedidos}">
-                                <td th:text="${pedido.descripcion}"></td>
-                                <td th:text="${pedido.fecha}"></td>
-                                <td th:text="${pedido.estado}"></td>
-                                <td>
-                                     <a  th:href="@{/pedidos_nuevos/ver/{id}(id=${pedido.id})}" class="btn btn-warning">Ver</a>
-<!--
-                                    <a th:href="@{/pedidos_nuevos/ver/{id}(id=${pedido.id})}" href="" class="btn btn-warning">Editar</a>
-                                    <a th:href="@{/{id}(id=${material.id})}" href="" class="btn btn-warning">Eliminar</a>-->
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Realizado por</th>
+                                    <th>Fecha</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <p>nombre</p>
+                                    </td>
+                                    <td>
+                                        <p>fecha</p>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>
+                            <p class="card-text">Descripcion del pedido </p>
+                        </div>
+                        <div class="input-group p-2 w-100 bd-highlight">
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1" value="1"
+                                       name="is_private">
+                                <label class="form-check-label" for="exampleCheck1">Leido</label>
+                            </div>
+                        </div>
                     </div>
-
-                    <!-- /.container-fluid -->
                 </div>
 
+                <div class="card card-body mt-2 ">
+                    <div class="card-header">
+                        Notas del pedido
+                    </div>
+                    <div class="card-body" <!--th:each="nota : ${notas}-->">
+                        <div class="card">
+                            <div class="card-header">
+                                Nombre usuario que realiza la nota
+                            </div>
+                            <div class="card-body">
+                                <blockquote class="blockquote mb-0">
+                                    <p>Descripcion de la nota</p>
+                                    <footer class="blockquote-footer">Creada el dia: fecha</footer>
+                                </blockquote>
+                            </div>
+                        </div>
+
+                        <form th:action="@{/agregar_material/{id}(id=${material.id})}" method="post" th:object="${nota}" enctype="multipart/form-data">
+                            <input type="hidden" name="ticket_id" value="">
+                            <div class="d-flex bd-highlight">
+                                <div class="input-group p-2 w-100 bd-highlight">
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                                      placeholder="Ingrese nota nueva" name="note" required></textarea>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="submit"
+                                                id="button-addon2">Crear
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- /.container-fluid -->
             </div>
+
+
             <!-- /.container-fluid -->
 
         </div>
@@ -231,21 +276,19 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="js/sb-admin-2.min.js"></script>
+<script src="/js/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
-<script src="vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-<!-- Page level custom scripts -->
-<script src="js/demo/datatables-demo.js"></script>
 
 </body>
 

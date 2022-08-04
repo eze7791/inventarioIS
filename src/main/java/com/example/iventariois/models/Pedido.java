@@ -36,4 +36,7 @@ public class Pedido {
     @OneToMany(mappedBy = "pedido")
     private List<Material> materiales;
 
+    @OneToMany(mappedBy = "nota")
+    private List<Nota> notas;
+
 }
