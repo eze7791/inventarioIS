@@ -27,4 +27,7 @@ public class Usuario {
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private Inventario inventario;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Nota> notas;
 }

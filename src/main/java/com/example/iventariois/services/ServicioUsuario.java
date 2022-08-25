@@ -52,4 +52,16 @@ public class ServicioUsuario {
             throw new Exception(e.getMessage());
         }
     }
+
+
+
+    @Transactional
+    public Usuario findByName(String name) throws Exception{
+        try {
+            return repositorioUsuario.findBynombre(name);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
 }

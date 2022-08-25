@@ -1,6 +1,7 @@
 package com.example.iventariois.services;
 
 
+import com.example.iventariois.models.Nota;
 import com.example.iventariois.models.Pedido;
 import com.example.iventariois.repositories.RepositorioPedido;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,4 +81,6 @@ public class ServicioPedido {
     public Long countNoVistos() {
         return repositorioPedido.countByvisto(false);
     }
+
+
 }

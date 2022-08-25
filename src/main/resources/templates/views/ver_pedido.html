@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
 
@@ -67,7 +68,7 @@
         </li>
 
         <!-- Nav Item - Request -->
-        <li class="nav-item active">
+        <li class="nav-item ">
             <a class="nav-link" th:href="@{/pedidos_vistos}">
                 <i class="fas fa-clipboard-check"></i>
                 <span>Vistos</span></a>
@@ -111,7 +112,7 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small" sec:authentication="name"></span>
                             <img class="img-profile rounded-circle"
                                  src="/img/undraw_profile.svg">
                         </a>
@@ -153,41 +154,41 @@
                 <div class="card shadow mb-4 ">
                     <div class="card-header py-3 d-sm-flex align-items-center justify-content-between mb-4">
                         <h6 class="m-0 font-weight-bold text-primary">Pedido</h6>
-                        <!--   <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" th:href="@{/agregar_material/0}"><i
-                                   class="fas fa-download fa-sm text-white-50" ></i> Ingresar nuevos materiales</a>-->
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th>Realizado por</th>
-                                    <th>Fecha</th>
+                                    <th >Realizado por </th>
+                                    <th >Fecha</th>
                                     <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
                                     <td>
-                                        <p>nombre</p>
+                                        <p th:text="${pedido.usuario.nombre}"></p>
                                     </td>
                                     <td>
-                                        <p>fecha</p>
+                                        <p th:text="${pedido.fecha}"></p>
                                     </td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div>
-                            <p class="card-text">Descripcion del pedido </p>
+                            <p class="card-text" th:text="${pedido.descripcion}"></p>
                         </div>
-                        <div class="input-group p-2 w-100 bd-highlight">
-                            <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1" value="1"
-                                       name="is_private">
-                                <label class="form-check-label" for="exampleCheck1">Leido</label>
-                            </div>
-                        </div>
+
+                    </div>
+                </div>
+
+                <div class="input-group p-2 w-100 bd-highlight">
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" th:checked="${pedido.visto}"
+                               th:name="visto">
+                        <label class="form-check-label" for="exampleCheck1">Leido</label>
                     </div>
                 </div>
 
@@ -195,35 +196,37 @@
                     <div class="card-header">
                         Notas del pedido
                     </div>
-                    <div class="card-body" <!--th:each="nota : ${notas}-->">
-                        <div class="card">
-                            <div class="card-header">
-                                Nombre usuario que realiza la nota
+                    <div class="card-body">
+                        <div class="card" th:each = "nota : ${pedido.notas}">
+                            <div class="card-header" th:text="${nota.usuario.nombre}" >
+
                             </div>
                             <div class="card-body">
                                 <blockquote class="blockquote mb-0">
-                                    <p>Descripcion de la nota</p>
-                                    <footer class="blockquote-footer">Creada el dia: fecha</footer>
+                                    <div th:text="${nota.nota}"></div>
+                                    <footer class="blockquote-footer" th:text="'creada el dia: ' + ${nota.fecha}"></footer>
                                 </blockquote>
                             </div>
                         </div>
+                    </div>
 
-                        <form th:action="@{/agregar_material/{id}(id=${material.id})}" method="post" th:object="${nota}" enctype="multipart/form-data">
-                            <input type="hidden" name="ticket_id" value="">
+
+
+                        <form th:action="@{/agregar_nota/{id}(id=${pedido.id})}" method="post" enctype="multipart/form-data">
                             <div class="d-flex bd-highlight">
                                 <div class="input-group p-2 w-100 bd-highlight">
                                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                                      placeholder="Ingrese nota nueva" name="note" required></textarea>
+                                                      placeholder="Ingrese nota nueva" th:name="nota" required></textarea>
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-secondary" type="submit"
                                                 id="button-addon2">Crear
                                         </button>
-                                    </div>
+                                    </DIV>
                                 </div>
                             </div>
                         </form>
                     </div>
-                </div>
+
 
                 <!-- /.container-fluid -->
             </div>
@@ -269,7 +272,9 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" class="btn btn-primary" value="Cerrar sesión">
+                </form>
             </div>
         </div>
     </div>

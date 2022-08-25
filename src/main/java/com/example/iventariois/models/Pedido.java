@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "pedidos")
@@ -33,10 +34,10 @@ public class Pedido {
     @JoinColumn(name = "fk_usuario", nullable = false)
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "pedido")
+    @OneToMany(mappedBy = "pedido",cascade = CascadeType.REMOVE)
     private List<Material> materiales;
 
-    @OneToMany(mappedBy = "nota")
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.REMOVE)
     private List<Nota> notas;
 
 }

@@ -1,5 +1,4 @@
-/*
-package com.example.iventariois.CrearUsuarioPrueba;
+/*package com.example.iventariois.CrearUsuarioPrueba;
 
 import com.example.iventariois.models.Usuario;
 import com.example.iventariois.services.ServicioUsuario;
@@ -21,16 +20,12 @@ public class CreateUsuario implements CommandLineRunner
     @Override
     public void run(String... args) throws Exception {
 
-
         Usuario usuario = new Usuario();
         BCryptPasswordEncoder passGenerator = new BCryptPasswordEncoder();
-        String password = passGenerator.encode("admin");
-        usuario.setNombre("admin");
+        String password = passGenerator.encode("user");
+        usuario.setNombre("user");
         usuario.setPassword(password);
-        usuario.setRol("ADMIN");
+        usuario.setRol("user");
         servicioUsuario.saveUsuario(usuario);
-
-
     }
-}
-*/
+}*/
